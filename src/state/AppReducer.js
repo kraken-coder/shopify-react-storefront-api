@@ -1,4 +1,11 @@
-import { GET_CLIENT, SET_LOADING, GET_PROD } from './TYPES';
+import {
+  GET_CLIENT,
+  SET_LOADING,
+  GET_PROD,
+  ADD_PROD,
+  ADD_CHECKOUT,
+} from './TYPES';
+
 export default (state, action) => {
   switch (action.type) {
     case GET_CLIENT:
@@ -23,7 +30,16 @@ export default (state, action) => {
         prodImage: action.payload.image,
         loading: false,
       };
-
+    case ADD_PROD:
+      return {
+        ...state,
+        cart: action.payload,
+      };
+    case ADD_CHECKOUT:
+      return {
+        ...state,
+        cartIns: action.payload,
+      };
     default:
       return state;
   }
