@@ -3,6 +3,7 @@ import {
   SET_LOADING,
   GET_PROD,
   ADD_PROD,
+  CREATE_CHECKOUT,
   ADD_CHECKOUT,
 } from './TYPES';
 
@@ -35,7 +36,7 @@ export default (state, action) => {
         ...state,
         cart: action.payload,
       };
-    case ADD_CHECKOUT:
+    case CREATE_CHECKOUT:
       return {
         ...state,
         cartIns: action.payload,

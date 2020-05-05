@@ -8,8 +8,11 @@ import {
   SET_LOADING,
   GET_PROD,
   ADD_PROD,
+  CREATE_CHECKOUT,
   ADD_CHECKOUT,
 } from './TYPES';
+
+// //////////////////////////////
 
 const AppState = (props) => {
   const initialState = {
@@ -24,6 +27,8 @@ const AppState = (props) => {
   const [state, dispatch] = React.useReducer(AppReducer, initialState);
 
   ///////////////////////////////
+
+  const { products, prodImage, shop, loading, product, cartIns, cart } = state;
 
   const client = Client.buildClient({
     domain: 'revolution-labs-test.myshopify.com/',
@@ -64,7 +69,7 @@ const AppState = (props) => {
   const checkoutInst = async () => {
     const res = await client.checkout.create();
     console.log(res);
-    dispatch({ type: ADD_CHECKOUT, payload: res });
+    dispatch({ type: CREATE_CHECKOUT, payload: res });
   };
 
   const selectedProd = (prod, title) => {
@@ -75,18 +80,30 @@ const AppState = (props) => {
     dispatch({ type: ADD_PROD, payload });
   };
 
+  const updateCart = async () => {
+    const lineItemsToAdd = [
+      {
+        variantId: cart.id,
+        quantity: 5,
+      },
+    ];
+
+    const res = await client.checkout.addLineItems(cartIns.id, lineItemsToAdd);
+    dispatch({ type: CREATE_CHECKOUT, payload: res });
+  };
   const setLoading = () => dispatch({ type: SET_LOADING });
 
-  const { products, prodImage, shop, loading, product, cart } = state;
   const value = {
     products,
     prodImage,
     product,
     shop,
+    cartIns,
     loading,
     getProduct,
     selectedProd,
     checkoutInst,
+    updateCart,
   };
 
   ///////////////
