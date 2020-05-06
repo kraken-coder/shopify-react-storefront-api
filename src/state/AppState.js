@@ -98,6 +98,7 @@ const AppState = (props) => {
     prodImage,
     product,
     shop,
+    cart,
     cartIns,
     loading,
     getProduct,
