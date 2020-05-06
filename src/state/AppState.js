@@ -57,7 +57,7 @@ const AppState = (props) => {
       const product = await client.product.fetchByHandle(handle);
 
       const { images, variants, title, description } = product;
-
+      console.log(description);
       const image = images[0].src;
       const prod = { images, variants, title, description };
       dispatch({ type: GET_PROD, payload: { image, product: prod } });
@@ -68,7 +68,6 @@ const AppState = (props) => {
 
   const checkoutInst = async () => {
     const res = await client.checkout.create();
-    console.log(res);
     dispatch({ type: CREATE_CHECKOUT, payload: res });
   };
 

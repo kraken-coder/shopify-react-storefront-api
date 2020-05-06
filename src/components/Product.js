@@ -55,7 +55,6 @@ const Product = ({ match: { params: handle } }) => {
         <h3 style={{ textAlign: 'center', marginBottom: '10px' }}>
           {product.title}
         </h3>
-        <p>{product.description}</p>
         {product.variants && (
           <Select id='selectList' onChange={handleChange}>
             <option selected>Choose Variant</option>
@@ -65,6 +64,7 @@ const Product = ({ match: { params: handle } }) => {
           </Select>
         )}
         {price && <Price>{`NGN ${price}`}</Price>}
+        <p style={{ margin: '10px 0' }}>{product.description}</p>
         <Button onClick={handleClick}>Add to cart</Button>
         <Checkout
           style={toogle ? style : null}
@@ -78,7 +78,7 @@ const Product = ({ match: { params: handle } }) => {
 };
 
 const style = {
-  opacity: '0.5',
+  opacity: '0.4',
 };
 
 const Price = Styled.p`
