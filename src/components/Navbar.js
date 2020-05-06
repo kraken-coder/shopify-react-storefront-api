@@ -1,12 +1,20 @@
 import React from 'react';
 import Styled from 'styled-components';
 
+//  context
+import AppContext from '../state/AppContext';
+
 const Navbar = ({ info }) => {
+  const state = React.useContext(AppContext);
+  const {
+    shop: { name },
+  } = state;
+  console.log(name);
   return (
     <NavWrapper>
       <Container>
         <Heading>
-          <h1>{info.name}</h1>
+          <h1>{name}</h1>
         </Heading>
         <Nav>
           <List>

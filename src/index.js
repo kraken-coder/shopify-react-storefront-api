@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import Client from 'shopify-buy';
+import AppState from './state/AppState';
 
 const client = Client.buildClient({
   domain: 'revolution-labs-test.myshopify.com/',
@@ -11,7 +12,9 @@ const client = Client.buildClient({
 
 ReactDOM.render(
   <React.StrictMode>
-    <App client={client} />
+    <AppState>
+      <App client={client} />
+    </AppState>
   </React.StrictMode>,
   document.getElementById('root')
 );
